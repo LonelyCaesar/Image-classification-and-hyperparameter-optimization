@@ -1,0 +1,37 @@
+import  cv2
+import  numpy as np
+img=cv2.imread('zebra.jpg')
+img2=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+cv2.imshow('Gray',img2)
+img3=cv2.GaussianBlur(img2,(27,27),7)
+cv2.imshow('GaussianBlur',img3)
+print(img3)
+print(np.mean(img3))
+print(np.median(img3))
+#1
+ret,thresh1=cv2.threshold(img3,40,250,cv2.THRESH_BINARY)
+cv2.imshow('THRESH_BINARY',thresh1)
+cv2.imwrite('thresh_GaussianBlur.jpg',img2)
+cv2.imwrite('thresh_THRESH_BINARY.jpg',img3)
+#2
+ret,thresh1=cv2.threshold(img3,40,250,cv2.THRESH_BINARY_INV)
+cv2.imshow('THRESH_BINARY_INV',thresh1)
+cv2.imwrite('thresh_GaussianBlur.jpg',img2)
+cv2.imwrite('thresh_THRESH_BINARY_INV.jpg',thresh1)
+#3
+ret,thresh1=cv2.threshold(img3,40,255,cv2.THRESH_TOZERO)
+cv2.imshow('THRESH_TOZERO',thresh1)
+cv2.imwrite('thresh_GaussianBlur.jpg',img2)
+cv2.imwrite('thresh_THRESH_TOZERO.jpg',thresh1)
+#4
+ret,thresh1=cv2.threshold(img3,40,255,cv2.THRESH_TOZERO_INV)
+cv2.imshow('THRESH_TOZERO_INV',thresh1)
+cv2.imwrite('thresh_GaussianBlur.jpg',img2)
+cv2.imwrite('thresh_THRESH_TOZERO_INV.jpg',thresh1)
+#5
+ret,thresh1=cv2.threshold(img3,40,200,cv2.THRESH_TRUNC)
+cv2.imshow('THRESH_TRUNC',thresh1)
+cv2.imwrite('thresh_GaussianBlur.jpg',img2)
+cv2.imwrite('thresh_THRESH_TRUNC.jpg',thresh1)
+cv2.waitKey()
+cv2.destroyAllWindows()
